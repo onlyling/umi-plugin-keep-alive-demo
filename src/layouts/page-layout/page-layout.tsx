@@ -3,6 +3,8 @@ import { CloseOutlined } from '@ant-design/icons';
 import classnames from 'classnames';
 import { useAliveController, history } from 'umi';
 
+import { NavNameMap } from '@/layouts/base-layout/header/navs/navs';
+
 import './page-layout.less';
 
 interface PageLayoutProps {
@@ -14,14 +16,6 @@ interface PageLayoutProps {
 }
 
 const buildClassName = (s: string) => `scf-page-layout${s}`;
-
-const NodeNameMap: Record<string, string> = {
-  '/': '首页',
-  '/my-courses/list': '我的课程',
-  '/examination-center/test-paper-management': '试卷管理',
-  '/examination-center/exam-management': '考试管理',
-  '/system/contribute-manage': '投稿管理',
-};
 
 /**
  * 页面布局
@@ -82,7 +76,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, fixed = true }) => {
               })}
               onClick={genOnClickNav(item.name as string)}
             >
-              {NodeNameMap[item.name as string]}
+              {NavNameMap[item.name as string]}
 
               <CloseOutlined onClick={genOnClickClose(item.name as string)} />
             </div>

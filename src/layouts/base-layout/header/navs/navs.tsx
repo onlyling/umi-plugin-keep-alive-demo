@@ -61,6 +61,22 @@ const navs: NavItem[] = [
   },
 ];
 
+export const NavNameMap = navs.reduce<Record<string, string>>((pre, cur) => {
+  if (cur.path) {
+    pre[cur.path] = cur.text;
+  }
+
+  if (cur.children && cur.children.length) {
+    cur.children.forEach((item) => {
+      if (item.path) {
+        pre[item.path] = item.text;
+      }
+    });
+  }
+
+  return pre;
+}, {});
+
 const buildClassName = (s: string) => `scf-base-layout-header-navs${s}`;
 
 const getPath = (config: typeof navs, key: string) => {
